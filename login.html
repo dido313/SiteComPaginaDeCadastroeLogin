@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <div class="login-container">
+            <div class="card">
+                <div class="card2">
+                    <form class="form" action="#" method="post" onsubmit="handleLogin(event)">
+                        <div class="field">
+                            <input
+                                type="text"
+                                class="input-field"
+                                placeholder="Email" 
+                                autocomplete="off"
+                                name="email" 
+                                required
+                            />
+                        </div>
+                        <div class="field">
+                            <input 
+                                type="password" 
+                                class="input-field" 
+                                placeholder="Password" 
+                                name="password" 
+                                required 
+                            />
+                        </div>
+                        <div class="btn">
+                            <button type="submit" class="button1">Login</button>
+                            <button type="button" class="button2">Sign Up</button>
+                        </div>
+                        <button type="button" class="button3">Forgot Password</button>
+                        <p>Não possui uma conta? <a href="cadastro.html" class="signup-link">Cadastre-se</a> Agora!</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Sua Empresa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value; // Correção do nome
+
+            const response = await fetch('http://localhost:5000/api/logar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, senha: password }) // Enviando "senha" conforme solicitado
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Se a mensagem for "Login efetuado com sucesso!"
+                if (data.mensagem === "Login efetuado com sucesso!") {
+                    alert("Login efetuado com sucesso!"); // Exibe o alerta
+                    // Redireciona o usuário após o sucesso
+                    window.location.href = 'index.html';
+                }
+            } else {
+                // Erro: Mostre uma mensagem de erro
+                console.error("Erro de login:", data.erro);
+                alert(data.erro); // Mostra um alerta com a mensagem de erro
+            }
+        }
+    </script>
+</body>
+</html>

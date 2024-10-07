@@ -1,0 +1,607 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte global */
+body {
+    background-color: gray;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Container padrão */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    position: relative; /* Para posicionar o nav.navigation */
+}
+
+/* Header */
+header {
+    background-color: #f4f4f4;
+    padding: 20px 0;
+    position: relative; /* Necessário para posicionamento absoluto dos botões */
+}
+
+.main-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Navegação */
+.navigation {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 5px; /* Espaçamento de 5px entre os botões */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* Estilos dos Botões */
+.button {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #e64a19;
+}
+
+/* Intro Section */
+.intro {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.intro p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 0;
+}
+
+.feature {
+    flex: 1 1 30%;
+    background-color: #fafafa;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature img {
+    width: 100%;
+    height: 200px; /* Altura fixa */
+    object-fit: cover; /* Mantém a proporção da imagem sem distorção */
+    border-radius: 5px;
+}
+
+.feature h2 {
+    margin: 15px 0 10px;
+    font-size: 1.5rem;
+    color: #ff5722;
+}
+
+.feature p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Carousel Section */
+.carousel-section {
+    padding: 40px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.carousel-section h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 400px; /* Altura fixa para todas as imagens do carrossel */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
+    display: block;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Media Queries */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature {
+        flex: 1 1 80%;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .carousel {
+        max-width: 100%;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 600px) {
+    .button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .main-title {
+        font-size: 1.8rem;
+    }
+
+    .intro p {
+        font-size: 1rem;
+    }
+
+    .feature h2 {
+        font-size: 1.3rem;
+    }
+
+    .feature p {
+        font-size: 0.9rem;
+    }
+
+    .carousel-section h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.feature img {
+    width: 100%;
+    height: 200px; /* Altura fixa */
+    object-fit: cover; /* Mantém a proporção da imagem sem distorção */
+    border-radius: 5px;
+}
+
+.slide img {
+    width: 100%;
+    height: 400px; /* Altura fixa para todas as imagens do carrossel */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
+    display: block;
+} 
+.navigation {
+    margin-top: 10px;
+}
+
+.nav-buttons {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    gap: 5px; /* Espaçamento de 5px entre os botões */
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Estilos dos Botões */
+.button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007BFF;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos do Formulário de Login */
+/* Estilos do Painel de Login Bonito */
+
+.card {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 22px;
+    transition: all 0.3s;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.card2 {
+    background-color: #171717;
+    padding: 2em;
+    border-radius: 22px;
+    transition: all 0.2s;
+}
+
+.card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
+}
+
+#heading {
+    text-align: center;
+    margin: 2em 0;
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.4em;
+    background-color: #171717;
+    border-radius: 25px;
+    transition: 0.4s ease-in-out;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+}
+
+.input-icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: white;
+}
+
+.input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #d3d3d3;
+}
+
+.form .btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2.5em;
+}
+
+.button1 {
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    cursor: pointer;
+}
+
+.button1:hover {
+    background-color: black;
+    color: white;
+}
+
+.button2 {
+    padding: 0.5em;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    cursor: pointer;
+}
+
+.button2:hover {
+    background-color: black;
+    color: white;
+}
+
+.button3 {
+    margin-bottom: 3em;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    cursor: pointer;
+}
+
+.button3:hover {
+    background-color: red;
+    color: white;
+}
+
+/* Estilização para o link de cadastro */
+.signup-link {
+    color: blue; /* Cor azul para o link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: bold; /* Faz o link se destacar */
+}
+
+.signup-link:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+/* Estilização para o link de login no cadastro */
+.login-link {
+    color: blue; /* Cor azul para o link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: bold; /* Faz o link se destacar */
+}
+
+.login-link:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+
+/* Footer 
+footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto;
+} */
+
+/* Novos estilos para o painel de login bonito */
+
+.card {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 22px;
+    transition: all 0.3s;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.card2 {
+    background-color: #171717;
+    padding: 2em;
+    border-radius: 22px;
+    transition: all 0.2s;
+}
+
+.card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
+}
+
+#heading {
+    text-align: center;
+    margin: 2em 0;
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.4em;
+    background-color: #171717;
+    border-radius: 25px;
+    transition: 0.4s ease-in-out;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+}
+
+.input-icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: white;
+}
+
+.input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #d3d3d3;
+}
+
+.form .btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2.5em;
+}
+
+.button1 {
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    cursor: pointer;
+}
+
+.button1:hover {
+    background-color: black;
+    color: white;
+}
+
+.button2 {
+    padding: 0.5em;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    cursor: pointer;
+}
+
+.button2:hover {
+    background-color: black;
+    color: white;
+}
+
+.button3 {
+    margin-bottom: 3em;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    cursor: pointer;
+}
+
+.button3:hover {
+    background-color: red;
+    color: white;
+}
+
+/* Estilização para o link de cadastro */
+.signup-link {
+    color: blue; /* Cor azul para o link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: bold; /* Faz o link se destacar */
+}
+
+.signup-link:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+/* Estilização para o link de login no cadastro */
+.login-link {
+    color: blue; /* Cor azul para o link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: bold; /* Faz o link se destacar */
+}
+
+.login-link:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+/* Ajustes para centralizar o painel de login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.login-message {
+    color: white; /* Cor branca para "Já possui uma conta?" */
+    font-size: 1rem; /* Tamanho da fonte (opcional) */
+}
+
+
+/*  IKOIJDSFOISNJFGPOSDIFMGJÓDFIGMD´FOIGMDSFÓGIMDSFG */
+

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .error { color: red; font-size: 0.9em; }
+        .success { color: green; font-size: 1em; }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="login-container">
+            <div class="card">
+                <div class="card2">
+                    <form class="form" id="registrationForm">
+                        <p id="heading">Cadastro</p> <!-- Este parágrafo exibe o título no formulário -->
+                        <div class="field">
+                            <input
+                                type="text"
+                                class="input-field"
+                                placeholder="Nome Completo"
+                                name="nome"
+                                id="nome"
+                                required
+                            />
+                            <span class="error" id="nomeError"></span>
+                        </div>
+                        <div class="field">
+                            <input
+                                type="email"
+                                class="input-field"
+                                placeholder="Email"
+                                name="email"
+                                id="email"
+                                required
+                            />
+                            <span class="error" id="emailError"></span>
+                        </div>
+                        <div class="field">
+                            <input
+                                type="password"
+                                class="input-field"
+                                placeholder="Senha"
+                                name="password"
+                                id="password"
+                                required
+                            />
+                            <span class="error" id="passwordError"></span>
+                        </div>
+                        <div class="field">
+                            <input
+                                type="password"
+                                class="input-field"
+                                placeholder="Confirme sua Senha"
+                                name="confirm-password"
+                                id="confirmPassword"
+                                required
+                            />
+                            <span class="error" id="confirmPasswordError"></span>
+                        </div>
+                        <div class="btn">
+                            <button type="submit" class="button1">Cadastrar</button>
+                            <button type="button" class="button2">Cancelar</button>
+                        </div>
+                        <button type="button" class="button3">Esqueceu a Senha?</button>
+                        <p class="login-message">Já possui uma conta? <a href="login.html" class="login-link">Faça login</a> Agora!</p>
+                        <div id="apiError" class="error"></div>
+                        <div id="apiSuccess" class="success"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Sua Empresa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Evitar o envio do formulário para validações
+
+            // Limpar mensagens de erro e sucesso
+            document.getElementById('nomeError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('confirmPasswordError').textContent = '';
+            document.getElementById('apiError').textContent = '';
+            document.getElementById('apiSuccess').textContent = '';
+
+            // Captura os valores dos campos
+            let nome = document.getElementById('nome').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+
+            let hasError = false;
+
+            // Validação do Nome
+            if (nome === '') {
+                document.getElementById('nomeError').textContent = 'O nome é obrigatório.';
+                hasError = true;
+            } else if (/[^a-zA-Z\s]/.test(nome)) {
+                document.getElementById('nomeError').textContent = 'O nome deve conter apenas letras.';
+                hasError = true;
+            }
+
+            // Validação do E-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Insira um e-mail válido.';
+                hasError = true;
+            }
+
+            // Validação da Senha
+            if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'A senha deve ter pelo menos 6 caracteres.';
+                hasError = true;
+            }
+
+            // Confirmação da Senha
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'As senhas não coincidem.';
+                hasError = true;
+            }
+
+            if (hasError) {
+                return; // Se houver erro na validação, não prosseguir
+            }
+
+            // Dados prontos para envio
+            const formData = {
+                nome: nome,
+                email: email,
+                senha: password // Mapeando 'password' para 'senha'
+            };
+
+            try {
+                const response = await fetch('http://localhost:5000/api/cadastrar', { // URL completa
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+});
+
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Exibir mensagem de sucesso
+                    document.getElementById('apiSuccess').textContent = result.mensagem;
+                    // Opcional: redirecionar para outra página ou limpar o formulário
+                    document.getElementById('registrationForm').reset();
+                } else {
+                    // Exibir erros retornados pela API
+                    if (result.erros) {
+                        // Erros de validação múltiplos
+                        for (const campo in result.erros) {
+                            if (result.erros.hasOwnProperty(campo)) {
+                                const erroElemento = document.getElementById(`${campo}Error`);
+                                if (erroElemento) {
+                                    erroElemento.textContent = result.erros[campo];
+                                }
+                            }
+                        }
+                    } else if (result.erro) {
+                        // Erro único, como duplicidade de email
+                        document.getElementById('apiError').textContent = result.erro;
+                    } else {
+                        // Outros erros
+                        document.getElementById('apiError').textContent = 'Ocorreu um erro ao cadastrar o usuário.';
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao enviar os dados:', error);
+                document.getElementById('apiError').textContent = 'Não foi possível conectar ao servidor. Tente novamente mais tarde.';
+            }
+        });
+
+        // Opcional: Limpar o formulário quando clicar no botão "Cancelar"
+        document.querySelector('.button2').addEventListener('click', function() {
+            document.getElementById('registrationForm').reset();
+            // Limpar mensagens de erro e sucesso
+            document.getElementById('nomeError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('confirmPasswordError').textContent = '';
+            document.getElementById('apiError').textContent = '';
+            document.getElementById('apiSuccess').textContent = '';
+        });
+    </script>
+</body>
+</html>

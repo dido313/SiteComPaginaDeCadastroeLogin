@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Exemplo</title>
+    <!-- Link para o Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link para o CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="main-title">Título Bonito da Landing Page</h1>
+            <a href="#contato" class="contact-button">Contato</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <img src="x1.webp" alt="Imagem de Teste">
+                <h2>Feature 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="feature">
+                <img src="x2.jpeg" alt="Imagem de Teste">
+                <h2>Feature 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="feature">
+                <img src="x3.jpeg" alt="Imagem de Teste">
+                <h2>Feature 3</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </section>
+
+        <!-- Nova Seção do Carrossel -->
+        <section class="carousel-section">
+            <h2>Galeria de Imagens</h2>
+            <div class="carousel">
+                <div class="slides">
+                    <div class="slide active">
+                        <img src="x1.webp" alt="Slide 1">
+                    </div>
+                    <div class="slide">
+                        <img src="x2.jpeg" alt="Slide 2">
+                    </div>
+                    <div class="slide">
+                        <img src="x3.jpeg" alt="Slide 3">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Adicione mais seções conforme necessário -->
+
+    </main>
+
+    <footer id="contato">
+        <div class="container">
+            <h3>Contato</h3>
+            <p>Email: contato@exemplo.com</p>
+            <p>Telefone: (11) 1234-5678</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para o Carrossel -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let current = 0;
+        const totalSlides = slides.length;
+        const slideIntervalTime = 3000; // 3 segundos
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                slide.style.transform = 'translateX(100%)';
+                if (i === index) {
+                    slide.classList.add('active');
+                    slide.style.transform = 'translateX(0)';
+                }
+            });
+        }
+
+        function nextSlide() {
+            current = (current + 1) % totalSlides;
+            slides.forEach((slide, i) => {
+                if (i === current) {
+                    slide.classList.add('active');
+                    slide.style.transform = 'translateX(0)';
+                } else {
+                    slide.classList.remove('active');
+                    slide.style.transform = 'translateX(100%)';
+                }
+            });
+        }
+
+        // Inicializar o carrossel
+        function startCarousel() {
+            slideInterval = setInterval(nextSlide, slideIntervalTime);
+        }
+
+        // Parar o carrossel quando o mouse estiver sobre ele
+        document.querySelector('.carousel').addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+
+        // Reiniciar o carrossel quando o mouse sair
+        document.querySelector('.carousel').addEventListener('mouseleave', startCarousel);
+
+        // Iniciar o carrossel
+        startCarousel();
+    </script>
+</body>
+</html>
